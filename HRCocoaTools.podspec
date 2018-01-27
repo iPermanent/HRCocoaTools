@@ -39,12 +39,6 @@ TODO: Add long description of the pod here.
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
 
-    s.subspec 'Network' do |n|
-    n.source_files = 'HRCocoaTools/Classes/Network/*'
-    n.dependency 'AFNetworking', '~> 2.3'
-    n.dependency 'Reachability'
-    end
-
     s.subspec 'Media' do |n|
     n.source_files = 'HRCocoaTools/Classes/Media/*'
     end
