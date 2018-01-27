@@ -1,6 +1,6 @@
 use_frameworks!
 target 'HRCocoaTools_Tests' do
   pod 'HRCocoaTools', :path => '../'
-  
+  pod 'AFNetworking', '~> 2.3'
   
 end
