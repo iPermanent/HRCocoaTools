@@ -1,6 +1,6 @@
 //
 //  HRUtil.m
-//  KeyboardTest
+//  HRCocoaTools
 //
 //  Created by ZhangHeng on 15/3/6.
 //  Copyright (c) 2015年 ZhangHeng. All rights reserved.
@@ -310,64 +310,6 @@ static OSType pixelFormatType = kCVPixelFormatType_32ARGB;
     
     return [UIColor colorWithRed:(float)r/255.0f green:(float)g/255.0f blue:(float)b/255.0f alpha:_alpha];
 }
-
-//获取本周第一天
-+(NSDate *)getFirstDayOFcurrentWeek{
-    NSDate *today = [NSDate date];
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    NSDateComponents *weekdayComponents =
-    [gregorian components:(NSCalendarUnitDay | NSCalendarUnitWeekday) fromDate:today];
-    NSInteger weekday = [weekdayComponents weekday];
-    
-    NSDate *firstDate = [today dateByAddingTimeInterval:60*60*24 * (-weekday+1)];
-    
-    return firstDate;
-}
-
-//获取本周最后一天
-+(NSDate *)getLastDayOfCurrentWeek{
-    NSDate *today = [NSDate date];
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    NSDateComponents *weekdayComponents =
-    [gregorian components:(NSCalendarUnitDay | NSCalendarUnitWeekday) fromDate:today];
-    NSInteger weekday = [weekdayComponents weekday];
-    
-    NSDate *firstDate = [today dateByAddingTimeInterval:60*60*24 * (7-weekday)];
-    
-    return firstDate;
-}
-
-//+(NSString *)getRemoteIPAddress{
-//    NSURL *iPURL = [NSURL URLWithString:@"http://www.0460.com/tools/internet/myip.aspx"];
-//    NSString *externalIP = @"";
-//    NSError *error = nil;
-//    NSString *theIpHtml = [NSString stringWithContentsOfURL:iPURL
-//                                                   encoding:NSUTF8StringEncoding error:&error];
-//    if (!error) {
-//        NSScanner *theScanner;
-//        NSString *text = nil;
-//        theScanner = [NSScanner scannerWithString:theIpHtml];
-//        while ([theScanner isAtEnd] == NO) {
-//            // find start of tag
-//            [theScanner scanUpToString:@"<" intoString:NULL] ;
-//            // find end of tag
-//            [theScanner scanUpToString:@">" intoString:&text] ;
-//            // replace the found tag with a space
-//            //(you can filter multi-spaces out later if you wish)
-//            theIpHtml = [theIpHtml stringByReplacingOccurrencesOfString:
-//                         [NSString stringWithFormat:@"%@>", text] withString:@" "] ;
-//            NSArray    *ipItemsArray = [theIpHtml componentsSeparatedByString:@" "];
-//            NSInteger an_Integer=[ipItemsArray indexOfObject:@"Address:"];
-//            externalIP =[ipItemsArray objectAtIndex: ++an_Integer];
-//        }
-//        return externalIP;
-//    } else {
-//        NSLog(@"Oops... g %ld, %@",(long)[error code],[error localizedDescription]);
-//        return @"";
-//    }
-//    return externalIP;
-//}
-
 
 +(void)converVideoDimissionWithFilePath:(NSString *)videoPath
                           andOutputPath:(NSString *)outputPath

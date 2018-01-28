@@ -1,6 +1,6 @@
 //
 //  HRDevice.h
-//  KeyboardTest
+//  HRCocoaTools
 //
 //  Created by ZhangHeng on 15/3/16.
 //  Copyright (c) 2015年 ZhangHeng. All rights reserved.

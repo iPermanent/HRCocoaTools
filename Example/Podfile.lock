@@ -22,14 +22,9 @@ PODS:
     - AFNetworking/NSURLSession
   - HRCocoaTools (0.1.0):
     - HRCocoaTools/Media (= 0.1.0)
-    - HRCocoaTools/Network (= 0.1.0)
     - HRCocoaTools/Util (= 0.1.0)
   - HRCocoaTools/Media (0.1.0)
-  - HRCocoaTools/Network (0.1.0):
-    - AFNetworking (~> 2.3)
-    - Reachability
   - HRCocoaTools/Util (0.1.0)
-  - Reachability (3.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.3)
@@ -41,8 +36,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
-  HRCocoaTools: 48264042d938eb230752941e1bd9d6a92a6ede2b
-  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  HRCocoaTools: 85ba38f28b648ae71685ba4a3d46c8e2e038969f
 
 PODFILE CHECKSUM: 18e35fe164f65f86eb5a9ac5ebac3ae59d699fad
 

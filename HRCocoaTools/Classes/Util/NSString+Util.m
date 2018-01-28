@@ -1,6 +1,6 @@
 //
 //  NSString+Util.m
-//  KeyboardTest
+//  HRCocoaTools
 //
 //  Created by ZhangHeng on 15/12/31.
 //  Copyright © 2015年 ZhangHeng. All rights reserved.

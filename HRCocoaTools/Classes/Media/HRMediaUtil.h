@@ -1,6 +1,6 @@
 //
 //  HRUtil.h
-//  KeyboardTest
+//  HRCocoaTools
 //
 //  Created by ZhangHeng on 15/3/6.
 //  Copyright (c) 2015年 ZhangHeng. All rights reserved.
@@ -93,13 +93,6 @@ typedef void(^SaveVideoFailed)(NSError *error);
  *  @return UIColor
  */
 +(UIColor *)getColorFromString:(NSString *)colorString;
-
-//周均按周日第一天开始算，如果有需要自行添加一天到周一至周日
-//获取本周第一天
-+(NSDate *)getFirstDayOFcurrentWeek;
-
-//获取本周最后一天
-+(NSDate *)getLastDayOfCurrentWeek;
 
 /**
  *  @author Henry
