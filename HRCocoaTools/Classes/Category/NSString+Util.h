@@ -19,6 +19,14 @@
  */
 -(BOOL)stringContainsChinesCharacters;
 
+
+/**
+ 转换为拼音输出
+
+ @return 拼音字符串
+ */
+- (NSString *)transformToPinyin;
+
 /**
  *  @author Henry
  *

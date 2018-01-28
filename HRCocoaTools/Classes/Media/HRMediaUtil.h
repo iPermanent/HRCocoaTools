@@ -20,7 +20,7 @@ typedef void(^SaveVideoFailed)(NSError *error);
 /**
  *  @author Henry
  *
- *  将图片数组合成一段视频
+ *  将图片数组合成一段视频，图片数量必须在2个及以上。否则全成会失败
  *
  *  @param paths       路径的数组
  *  @param completed   完成的回调
@@ -44,21 +44,6 @@ typedef void(^SaveVideoFailed)(NSError *error);
                       andAudioPath:(NSString *)audioPath
                          completed:(SaveVideoCompleted)completed
                          andFailed:(SaveVideoFailed)failedBlock;
-
-/**
- *  @author Henry
- *
- *  将视频转换为gif格式
- *
- *  @param videoPath   视频文件路径
- *  @param completed   完成的回调
- *  @param failedBlock 失败的回调
- */
-
-//#warning 暂未实现此方法
-//+(void)convertVideoToGifWithVideo:(NSString *)videoPath
-//                        completed:(SaveVideoCompleted)completed
-//                        andFailed:(SaveVideoFailed)failedBlock;
 
 /**
  *  @author Henry
@@ -111,20 +96,5 @@ typedef void(^SaveVideoFailed)(NSError *error);
                          withCompletion:(void(^)(void))completion;
 
 
-/**
- 将mp3转为m4r铃声格式，时间最多为40秒
-
- @param mp3Path mp3文件路径
- @param rintonePath 输出m4r路径
- @param start_time 开始时间
- @param end-time 结束时间
- @param completion 完成回调
- */
-//+(void)convertMp3File:(NSString *)mp3Path
-//           outPutPath:(NSString *)rintonePath
-//        WithStartTime:(CGFloat)start_time
-//              endTime:(CGFloat)end_time
-//       withCompletion:(void(^)(void))completion
-//               failed:(SaveVideoFailed)failed;
 
 @end

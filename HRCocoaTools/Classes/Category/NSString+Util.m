@@ -167,4 +167,15 @@ static inline int isHanzi(uint32_t cp) {
     return [oldData base64EncodedDataWithOptions:NSDataBase64Encoding64CharacterLineLength];
 }
 
+//转换拼音
+- (NSString *)transformToPinyin {
+    if (self.length <= 0) {
+        return self;
+    }
+    NSMutableString *tempString = [NSMutableString stringWithString:self];
+    CFStringTransform((CFMutableStringRef)tempString, NULL, kCFStringTransformToLatin, false);
+    tempString = (NSMutableString *)[tempString stringByFoldingWithOptions:NSDiacriticInsensitiveSearch locale:[NSLocale currentLocale]];
+    return [tempString uppercaseString];
+}
+
 @end

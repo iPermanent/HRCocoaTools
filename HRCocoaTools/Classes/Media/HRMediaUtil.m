@@ -86,7 +86,7 @@ static OSType pixelFormatType = kCVPixelFormatType_32ARGB;
             if(++frame >= [paths count] ){
                 [writerInput markAsFinished];
                 [videoWriter finishWritingWithCompletionHandler:^{
-                    [HRMediaUtil addAudioToFileAtPath:videoPath andAudioPath:audioPath Success:^(NSString *filePath) {
+                    [self addAudioToFileAtPath:videoPath andAudioPath:audioPath Success:^(NSString *filePath) {
                         if(completed){
                             completed(filePath);
                         }
@@ -99,7 +99,7 @@ static OSType pixelFormatType = kCVPixelFormatType_32ARGB;
             }
             
             UIImage *info = [UIImage imageWithContentsOfFile:[paths objectAtIndex:frame]];
-            CVPixelBufferRef buffer = [HRMediaUtil pixelBufferFromCGImage:info.CGImage size:frameSize];
+            CVPixelBufferRef buffer = [self pixelBufferFromCGImage:info.CGImage size:frameSize];
             if (buffer){
                 if(![adaptor appendPixelBuffer:buffer withPresentationTime:CMTimeMake(frame,24)]){
                     if(failedBlock)
@@ -255,7 +255,7 @@ static OSType pixelFormatType = kCVPixelFormatType_32ARGB;
     UIImage *dealImage = [UIImage imageWithData:data];
     if(ratio > 1){
         CGSize newSize = CGSizeMake(image.size.width / ratio, image.size.height / ratio);
-        dealImage = [HRMediaUtil imageWithImage:dealImage scaledToSize:newSize];
+        dealImage = [self imageWithImage:dealImage scaledToSize:newSize];
     }
     
     return UIImageJPEGRepresentation(dealImage, compressQuality>1?1:compressQuality*2);
@@ -283,7 +283,7 @@ static OSType pixelFormatType = kCVPixelFormatType_32ARGB;
         x = strtol(cStr+1, NULL, 16);
         //_str = [NSString stringWithFormat:@"#%@",color];
         
-        return [HRMediaUtil colorWithHex:(UInt32)x withAlpha:alpha];
+        return [self colorWithHex:(UInt32)x withAlpha:alpha];
     }
     //如果是6位的颜色
     else if([colorString length] == 7){
