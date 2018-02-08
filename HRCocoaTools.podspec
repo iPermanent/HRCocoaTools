@@ -24,7 +24,7 @@ TODO: Add long description of the pod here.
   s.homepage         = 'https://github.com/iPermanent/HRCocoaTools'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'zhangheng1' => 'zhangheng1@corp.netease.com' }
+  s.author           = { 'iPermanent' => 'henryzhangios@gmail.com' }
   s.source           = { :git => 'https://github.com/iPermanent/HRCocoaTools.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.comReachability/<TWITTER_USERNAME>'
 

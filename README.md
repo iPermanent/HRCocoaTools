@@ -22,7 +22,7 @@ pod 'HRCocoaTools'
 
 ## Author
 
-zhangheng1, zhangheng1@corp.netease.com
+iPermanent, henryzhangios@gmail.com
 
 ## License
 
