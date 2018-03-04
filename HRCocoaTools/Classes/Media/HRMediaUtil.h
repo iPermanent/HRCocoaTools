@@ -16,6 +16,12 @@
 typedef void(^SaveVideoCompleted)(NSString *filePath);
 typedef void(^SaveVideoFailed)(NSError *error);
 
+typedef NS_ENUM(NSUInteger, HRMaskImageLocation) {
+    HRMaskImageLocationTopLeft = 0,
+    HRMaskImageLocationTopRight,
+    HRMaskImageLocationBottomLeft,
+    HRMaskImageLocationBottomRight
+};
 
 /**
  *  @author Henry
@@ -82,7 +88,7 @@ typedef void(^SaveVideoFailed)(NSError *error);
 /**
  *  @author Henry
  *
- *  将视频裁剪为正方形区域显示
+ *  将竖着的视频裁剪为正方形区域显示
  *
  *  @param videoPath  原视频路径
  *  @param outputPath 输出视频路径
@@ -95,6 +101,20 @@ typedef void(^SaveVideoFailed)(NSError *error);
                                 cutType:(int)type
                          withCompletion:(void(^)(void))completion;
 
+
+/**
+ 向指定路径的视频添加水印
+
+ @param image 水印图片
+ @param imageSize 水印图片大小
+ @param videoPath 视频路径
+ @param completion 完成回调
+ */
++(void)addMaskImage:(UIImage *)image
+               size:(CGSize )imageSize
+           location:(HRMaskImageLocation)location
+            toVideo:(NSString *)videoPath
+     withCompletion:(void(^)(void))completion;
 
 
 @end
