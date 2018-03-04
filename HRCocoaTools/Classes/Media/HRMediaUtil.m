@@ -553,7 +553,7 @@ static OSType pixelFormatType = kCVPixelFormatType_32ARGB;
     float renderWidth, renderHeight;
     renderWidth = naturalSize.width;
     renderHeight = naturalSize.height;
-    videoComp.renderSize = naturalSize;
+//    videoComp.renderSize = naturalSize;
     instruction.layerInstructions = [NSArray arrayWithObject:layerInstruction];
     videoComp.instructions = [NSArray arrayWithObject: instruction];
     
