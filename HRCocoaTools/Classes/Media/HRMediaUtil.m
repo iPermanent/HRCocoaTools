@@ -595,7 +595,21 @@ static OSType pixelFormatType = kCVPixelFormatType_32ARGB;
             completion();
         }
     }];
+}
+
+/**
+ 通过URL获取图片尺寸
+ 
+ @param url 图片地址
+ @return 图片尺寸
+ */
++(CGSize)imageSizeFromUrl:(NSString *)url {
+    NSMutableString *imageURL = [NSMutableString stringWithString:url];
     
+    CGImageSourceRef source = CGImageSourceCreateWithURL((CFURLRef)[NSURL URLWithString:imageURL], NULL);
+    NSDictionary* imageHeader = (__bridge NSDictionary*) CGImageSourceCopyPropertiesAtIndex(source, 0, NULL);
+    
+    return CGSizeMake([imageHeader[@"PixelWidth"] floatValue], [imageHeader[@"PixelHeight"] floatValue]);
 }
 
 @end

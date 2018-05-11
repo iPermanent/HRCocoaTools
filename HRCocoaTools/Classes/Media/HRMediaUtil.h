@@ -117,4 +117,12 @@ typedef NS_ENUM(NSUInteger, HRMaskImageLocation) {
      withCompletion:(void(^)(void))completion;
 
 
+/**
+通过URL获取图片尺寸
+
+ @param url 图片地址
+ @return 图片尺寸
+ */
++(CGSize)imageSizeFromUrl:(NSString *)url;
+
 @end
