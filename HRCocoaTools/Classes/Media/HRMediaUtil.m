@@ -604,9 +604,12 @@ static OSType pixelFormatType = kCVPixelFormatType_32ARGB;
  @return 图片尺寸
  */
 +(CGSize)imageSizeFromUrl:(NSString *)url {
-    NSMutableString *imageURL = [NSMutableString stringWithString:url];
+    if(!url || url.length == 0 || ![url hasPrefix:@"http"]){
+        NSLog(@"image url error");
+        return CGSizeZero;
+    }
     
-    CGImageSourceRef source = CGImageSourceCreateWithURL((CFURLRef)[NSURL URLWithString:imageURL], NULL);
+    CGImageSourceRef source = CGImageSourceCreateWithURL((CFURLRef)[NSURL URLWithString:url], NULL);
     NSDictionary* imageHeader = (__bridge NSDictionary*) CGImageSourceCopyPropertiesAtIndex(source, 0, NULL);
     
     return CGSizeMake([imageHeader[@"PixelWidth"] floatValue], [imageHeader[@"PixelHeight"] floatValue]);
