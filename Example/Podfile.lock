@@ -20,14 +20,18 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - HRCocoaTools (0.1.8):
-    - HRCocoaTools/Category (= 0.1.8)
-    - HRCocoaTools/Media (= 0.1.8)
-    - HRCocoaTools/Util (= 0.1.8)
-  - HRCocoaTools/Category (0.1.8)
-  - HRCocoaTools/Media (0.1.8)
-  - HRCocoaTools/Util (0.1.8):
+  - HRCocoaTools (0.1.9):
+    - HRCocoaTools/Animation (= 0.1.9)
+    - HRCocoaTools/Category (= 0.1.9)
+    - HRCocoaTools/Media (= 0.1.9)
+    - HRCocoaTools/Util (= 0.1.9)
+  - HRCocoaTools/Animation (0.1.9):
+    - pop
+  - HRCocoaTools/Category (0.1.9)
+  - HRCocoaTools/Media (0.1.9)
+  - HRCocoaTools/Util (0.1.9):
     - Reachability
+  - pop (1.0.10)
   - Reachability (3.2)
 
 DEPENDENCIES:
@@ -37,6 +41,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
+    - pop
     - Reachability
 
 EXTERNAL SOURCES:
@@ -45,7 +50,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
-  HRCocoaTools: ac005b3da9e88a256e8653129aef25deebe3bfba
+  HRCocoaTools: a37ec63a9adffeaba6d4e2332c76fae2f2781d63
+  pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
 
 PODFILE CHECKSUM: 18e35fe164f65f86eb5a9ac5ebac3ae59d699fad

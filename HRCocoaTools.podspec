@@ -39,6 +39,11 @@ TODO: Add long description of the pod here.
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
 
+    s.subspec 'Animation' do |n|
+    n.source_files = 'HRCocoaTools/Classes/Animation/*'
+    n.dependency 'pop'
+    end
+
     s.subspec 'Media' do |n|
     n.source_files = 'HRCocoaTools/Classes/Media/*'
     end
