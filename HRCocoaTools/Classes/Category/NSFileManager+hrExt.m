@@ -14,7 +14,11 @@
 }
 
 - (NSString *)cacheDir {
-    return [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    return [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Caches"];
+}
+
+- (NSString *)tempDir {
+    return [NSHomeDirectory() stringByAppendingPathComponent:@"tmp"];
 }
 
 @end

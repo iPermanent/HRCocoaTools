@@ -12,7 +12,7 @@
 - (void)addRoundRectType:(HRRoundType)roudType withRadius:(CGFloat)radius{
     self.layer.mask = nil;
     UIRectCorner   corners;
-    switch (roundType) {
+    switch (roudType) {
         case HRRoundTypeLeft:
             corners = UIRectCornerBottomLeft | UIRectCornerTopLeft;
             break;

@@ -13,4 +13,6 @@
 
 - (NSString *)cacheDir;
 
+- (NSString *)tempDir;
+
 @end

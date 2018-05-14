@@ -13,17 +13,19 @@
 #import <Foundation/Foundation.h>
 
 typedef enum{
-    HRNetworkStatusWifi  =   0,
-    HRNetworkStatus2G,
-    HRNetworkStatus3G,
-    HRNetworkStatus4G,
-    HRNetworkStatusNone
-}HRNetworkType;
+    HRNetworkStatusTypeWifi  =   0,
+    HRNetworkStatusType2G,
+    HRNetworkStatusType3G,
+    HRNetworkStatusType4G,
+    HRNetworkStatusTypeNone
+}HRNetworkStatusType;
 
 @interface HRNetworkStatus : NSObject
 
-+(HRNetworkStatus *)shareMonitor;
+@property(nonatomic,copy)void(^networkChangeBlock)(HRNetworkStatusType status);
 
-+(HRNetworkType)currentNetworkStatus;
++(HRNetworkStatus *)shareStatus;
+
+-(HRNetworkStatusType)currentNetworkStatus;
 
 @end

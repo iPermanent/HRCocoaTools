@@ -9,12 +9,9 @@
 #import "HRMediaUtil.h"
 #import <AVFoundation/AVFoundation.h>
 #import <CoreVideo/CoreVideo.h>
-#import <ImageIO/ImageIO.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 #include <ifaddrs.h>
 #include <arpa/inet.h>
-
-#define MEGA_BYTE 100*1024
 
 static OSType pixelFormatType = kCVPixelFormatType_32ARGB;
 
@@ -241,75 +238,7 @@ static OSType pixelFormatType = kCVPixelFormatType_32ARGB;
     });
 }
 
-+(NSData *)dataFromImageForUpload:(UIImage *)image{
-    NSData  *data = UIImageJPEGRepresentation(image, 1);
-    double compressQuality = (double)MEGA_BYTE/(CGFloat)data.length;
-    if(compressQuality < 0 ){
-        data = UIImageJPEGRepresentation(image, compressQuality);
-    }
-    
-    CGFloat screenWidth = 720;
-    CGFloat imageWidth = MIN(image.size.width, image.size.height);
-    CGFloat ratio = imageWidth / screenWidth;
-    
-    UIImage *dealImage = [UIImage imageWithData:data];
-    if(ratio > 1){
-        CGSize newSize = CGSizeMake(image.size.width / ratio, image.size.height / ratio);
-        dealImage = [self imageWithImage:dealImage scaledToSize:newSize];
-    }
-    
-    return UIImageJPEGRepresentation(dealImage, compressQuality>1?1:compressQuality*2);
-}
 
-+(UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize{
-    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
-    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
-}
-
-+(UIColor *)getColorFromString:(NSString *)colorString{
-    long x;
-    NSString *_str;
-    //如果是八位
-    if([colorString length] == 9){
-        //取前两位alpha值
-        NSString *alpha = [colorString substringToIndex:3];
-        
-        //取后面的几位颜色值
-        NSString *color = [colorString substringFromIndex:3];
-        const char *cStr = [color cStringUsingEncoding:NSASCIIStringEncoding];
-        x = strtol(cStr+1, NULL, 16);
-        //_str = [NSString stringWithFormat:@"#%@",color];
-        
-        return [self colorWithHex:(UInt32)x withAlpha:alpha];
-    }
-    //如果是6位的颜色
-    else if([colorString length] == 7){
-        const char *cStr = [colorString cStringUsingEncoding:NSASCIIStringEncoding];
-        x = strtol(cStr+1, NULL, 16);
-        _str = @"#FF";
-    }
-    //如果格式不对就直接返回黑色颜色
-    else
-        return [UIColor blackColor];
-    return [self colorWithHex:(UInt32)x withAlpha:_str];
-}
-
-+(UIColor *)colorWithHex:(UInt32)col withAlpha:(NSString*)alphaStr
-{
-    unsigned int r, g, b;
-    b = col & 0xFF;
-    g = (col >> 8) & 0xFF;
-    r = (col >> 16) & 0xFF;
-    
-    const char* aStr = [alphaStr cStringUsingEncoding:NSASCIIStringEncoding];
-    long value = strtol(aStr+1, NULL, 16);
-    CGFloat _alpha = (float)(value & 0xFF)/255.0f;
-    
-    return [UIColor colorWithRed:(float)r/255.0f green:(float)g/255.0f blue:(float)b/255.0f alpha:_alpha];
-}
 
 +(void)converVideoDimissionWithFilePath:(NSString *)videoPath
                           andOutputPath:(NSString *)outputPath
@@ -595,24 +524,6 @@ static OSType pixelFormatType = kCVPixelFormatType_32ARGB;
             completion();
         }
     }];
-}
-
-/**
- 通过URL获取图片尺寸
- 
- @param url 图片地址
- @return 图片尺寸
- */
-+(CGSize)imageSizeFromUrl:(NSString *)url {
-    if(!url || url.length == 0 || ![url hasPrefix:@"http"]){
-        NSLog(@"image url error");
-        return CGSizeZero;
-    }
-    
-    CGImageSourceRef source = CGImageSourceCreateWithURL((CFURLRef)[NSURL URLWithString:url], NULL);
-    NSDictionary* imageHeader = (__bridge NSDictionary*) CGImageSourceCopyPropertiesAtIndex(source, 0, NULL);
-    
-    return CGSizeMake([imageHeader[@"PixelWidth"] floatValue], [imageHeader[@"PixelHeight"] floatValue]);
 }
 
 @end
