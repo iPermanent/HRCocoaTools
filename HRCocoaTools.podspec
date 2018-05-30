@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'HRCocoaTools'
-  s.version          = '0.2.0'
+  s.version          = '0.2.1'
   s.summary          = 'Henry iOS tool Lib'
 
 # This description is used to generate tags and improve search results.
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+  私人使用工具库，封装了一些常用的基本库
                        DESC
 
   s.homepage         = 'https://github.com/iPermanent/HRCocoaTools'

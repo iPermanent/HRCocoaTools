@@ -1,0 +1,6 @@
+framework module HRCocoaTools {
+  umbrella header "HRCocoaTools-umbrella.h"
+
+  export *
+  module * { export * }
+}
