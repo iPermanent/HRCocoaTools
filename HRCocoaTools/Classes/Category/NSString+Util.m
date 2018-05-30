@@ -157,7 +157,7 @@ static inline int isHanzi(uint32_t cp) {
 }
 
 - (NSString *) base64{
-    NSData * data = [self dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    NSData * data = [self dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
     data = [self encodeData:data];
     NSString * output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     return output;
