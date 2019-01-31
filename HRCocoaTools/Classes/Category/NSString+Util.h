@@ -65,4 +65,6 @@
 
 - (NSString *) base64;
 
+- (NSString *) decodeBase64String;
+
 @end

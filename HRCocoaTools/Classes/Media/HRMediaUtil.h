@@ -21,6 +21,15 @@ typedef NS_ENUM(NSUInteger, HRMaskImageLocation) {
     HRMaskImageLocationBottomRight
 };
 
+//左右暂未做支持
+typedef NS_ENUM(NSUInteger, HRVideoCutRectType){
+    HRVideoCutRectTypeTop,
+//    HRVideoCutRectTypeLeft,
+    HRVideoCutRectTypeCenter,
+//    HRVideoCutRectTypeRight,
+    HRVideoCutRectTypeBottom
+};
+
 /**
  *  @author Henry
  *
@@ -56,14 +65,14 @@ typedef NS_ENUM(NSUInteger, HRMaskImageLocation) {
  *
  *  @param videoPath  原视频路径
  *  @param outputPath 输出视频路径
- *  @param type       裁剪方式  0:裁剪取上半部分  1.裁剪后取中间部分  2.裁剪后取下部分
+ *  @param cutType       裁剪方式
  *
  *  @param completion 完成回调
  */
 +(void)converVideoDimissionWithFilePath:(NSString *)videoPath
                           andOutputPath:(NSString *)outputPath
-                                cutType:(int)type
-                         withCompletion:(void(^)(void))completion;
+                                cutType:(HRVideoCutRectType) cutType
+                         withCompletion:(void(^)(NSError *error))completion;
 
 
 /**

@@ -242,8 +242,8 @@ static OSType pixelFormatType = kCVPixelFormatType_32ARGB;
 
 +(void)converVideoDimissionWithFilePath:(NSString *)videoPath
                           andOutputPath:(NSString *)outputPath
-                                cutType:(int)type
-                         withCompletion:(void (^)(void))completion{
+                                cutType:(HRVideoCutRectType )cutType
+                         withCompletion:(void (^)(NSError *error))completion{
     //获取原视频
     AVAsset *asset = [AVAsset assetWithURL:[NSURL fileURLWithPath:videoPath]];
     
@@ -263,19 +263,16 @@ static OSType pixelFormatType = kCVPixelFormatType_32ARGB;
     AVMutableVideoCompositionLayerInstruction* transformer = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:clipVideoTrack];
     
     CGAffineTransform t1;
-    switch (type) {
-        case 0:{
-            //将裁剪后保留的区域设置为视频顶部
+    switch (cutType) {
+        case HRVideoCutRectTypeTop:{
             t1 = CGAffineTransformMakeTranslation(clipVideoTrack.naturalSize.height, 0 );
         }
             break;
-        case 1:{
-            //将裁剪后保留的区域设置为视频中间部分
+        case HRVideoCutRectTypeCenter:{
             t1 = CGAffineTransformMakeTranslation(clipVideoTrack.naturalSize.height, -(clipVideoTrack.naturalSize.width - clipVideoTrack.naturalSize.height) /2 );
         }
             break;
-        case 2:{
-            //将裁剪后保留的区域设置为视频下面部分
+        case HRVideoCutRectTypeBottom:{
             t1 = CGAffineTransformMakeTranslation(clipVideoTrack.naturalSize.height, (clipVideoTrack.naturalSize.width - clipVideoTrack.naturalSize.height) /2);
         }
             break;
@@ -296,7 +293,7 @@ static OSType pixelFormatType = kCVPixelFormatType_32ARGB;
     instruction.layerInstructions = [NSArray arrayWithObject:transformer];
     videoComposition.instructions = [NSArray arrayWithObject: instruction];
     
-    //移除掉之前所存在的视频信息
+    //移除掉之前所存在的视频文件
     [[NSFileManager defaultManager]  removeItemAtURL:[NSURL fileURLWithPath:outputPath] error:nil];
     
     //开始进行导出视频
@@ -307,9 +304,28 @@ static OSType pixelFormatType = kCVPixelFormatType_32ARGB;
     
     [exporter exportAsynchronouslyWithCompletionHandler:^{
         dispatch_async(dispatch_get_main_queue(), ^{
-            //导出完成后执行回调
-            if(completion)
-                completion();
+            switch (exporter.status) {
+                case AVAssetExportSessionStatusCompleted:{
+                    //导出完成后执行回调
+                    if(completion)
+                        completion(nil);
+                    }
+                    break;
+                case AVAssetExportSessionStatusFailed:{
+                    //导出完成后执行回调
+                    if(completion)
+                        completion(exporter.error);
+                }
+                    break;
+                case AVAssetExportSessionStatusCancelled:{
+                    //导出完成后执行回调
+                    NSError *error = [[NSError alloc] initWithDomain:@"com.henry.hrcocoatool" code:-1 userInfo:@{NSLocalizedDescriptionKey:@"用户取消"}];
+                    if(completion)
+                        completion(error);
+                }break;
+                default:
+                    break;
+            }
         });
     }];
 }

@@ -163,6 +163,12 @@ static inline int isHanzi(uint32_t cp) {
     return output;
 }
 
+- (NSString *)decodeBase64String {
+    NSData *decodeData = [[NSData alloc] initWithBase64EncodedString:self options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    
+    return [[NSString alloc] initWithData:decodeData encoding:NSUTF8StringEncoding];
+}
+
 - (NSData *)encodeData:(NSData *)oldData {
     return [oldData base64EncodedDataWithOptions:NSDataBase64Encoding64CharacterLineLength];
 }
