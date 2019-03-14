@@ -8,7 +8,7 @@
 
 #import "NSString+Util.h"
 #import <CommonCrypto/CommonDigest.h>
-
+#include <CommonCrypto/CommonHMAC.h>
 
 @implementation NSString (Util)
 
@@ -114,6 +114,37 @@ static inline int isHanzi(uint32_t cp) {
         [output appendFormat:@"%02x", digest[i]];
     
     return output;
+}
+
+- (NSString *)SHA256
+{
+    const char *s = [self cStringUsingEncoding:NSUTF8StringEncoding];
+    NSData *keyData = [NSData dataWithBytes:s length:strlen(s)];
+    
+    uint8_t digest[CC_SHA256_DIGEST_LENGTH] = {0};
+    CC_SHA256(keyData.bytes, (CC_LONG)keyData.length, digest);
+    NSData *out = [NSData dataWithBytes:digest length:CC_SHA256_DIGEST_LENGTH];
+    NSString *hash = [out description];
+    hash = [hash stringByReplacingOccurrencesOfString:@" " withString:@""];
+    hash = [hash stringByReplacingOccurrencesOfString:@"<" withString:@""];
+    hash = [hash stringByReplacingOccurrencesOfString:@">" withString:@""];
+    return hash;
+}
+
+- (NSString *) hmacSHA256WithKey:(NSString *)key
+{
+    const char *cKey  = [key cStringUsingEncoding:NSUTF8StringEncoding];
+    const char *cData = [self cStringUsingEncoding:NSUTF8StringEncoding];
+    unsigned char cHMAC[CC_SHA256_DIGEST_LENGTH];
+    CCHmac(kCCHmacAlgSHA256, cKey, strlen(cKey), cData, strlen(cData), cHMAC);
+    NSData *HMACData = [NSData dataWithBytes:cHMAC length:sizeof(cHMAC)];
+    const unsigned char *buffer = (const unsigned char *)[HMACData bytes];
+    NSMutableString *HMAC = [NSMutableString stringWithCapacity:HMACData.length * 2];
+    for (int i = 0; i < HMACData.length; ++i){
+        [HMAC appendFormat:@"%02x", buffer[i]];
+    }
+    
+    return HMAC;
 }
 
 -(NSString *) md5{

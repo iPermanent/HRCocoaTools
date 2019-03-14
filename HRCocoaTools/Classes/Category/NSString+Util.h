@@ -67,4 +67,8 @@
 
 - (NSString *) decodeBase64String;
 
+- (NSString *) SHA256;
+
+- (NSString *) hmacSHA256WithKey:(NSString *)key;
+
 @end
