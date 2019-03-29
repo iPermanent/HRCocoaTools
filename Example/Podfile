@@ -1,5 +1,13 @@
 use_frameworks!
-target 'HRCocoaTools_Tests' do
+
+platform :ios, '8.0'
+
+target 'HRCocoaTools_Example' do
   pod 'HRCocoaTools', :path => '../'
-  
+
+  target 'HRCocoaTools_Tests' do
+    inherit! :search_paths
+
+    
+  end
 end

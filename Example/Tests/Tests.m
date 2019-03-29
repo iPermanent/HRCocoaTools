@@ -2,8 +2,8 @@
 //  HRCocoaToolsTests.m
 //  HRCocoaToolsTests
 //
-//  Created by zhangheng1 on 01/27/2018.
-//  Copyright (c) 2018 zhangheng1. All rights reserved.
+//  Created by zhangheng on 03/29/2019.
+//  Copyright (c) 2019 zhangheng. All rights reserved.
 //
 
 @import XCTest;
