@@ -20,9 +20,10 @@
 #import "UIView+roundType.h"
 #import "HRMediaUtil.h"
 #import "NSData+imageFormat.h"
-#import "EMMonitorView.h"
+#import "HRBaseModel.h"
 #import "HRDevice.h"
 #import "HRImageCutViewController.h"
+#import "HRMonitorView.h"
 #import "HRNetworkStatus.h"
 
 FOUNDATION_EXPORT double HRCocoaToolsVersionNumber;

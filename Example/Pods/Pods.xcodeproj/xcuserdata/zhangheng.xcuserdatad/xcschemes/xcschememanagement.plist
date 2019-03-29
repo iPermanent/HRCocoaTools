@@ -7,7 +7,7 @@
 		<key>HRCocoaTools.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<true/>
+			<false/>
 		</dict>
 		<key>Pods-HRCocoaTools_Tests.xcscheme</key>
 		<dict>

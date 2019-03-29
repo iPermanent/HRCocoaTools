@@ -1,8 +1,8 @@
 {
   "name": "HRCocoaTools",
-  "version": "0.2.0",
+  "version": "0.2.5",
   "summary": "Henry iOS tool Lib",
-  "description": "TODO: Add long description of the pod here.",
+  "description": "私人使用工具库，封装了一些常用的基本库",
   "homepage": "https://github.com/iPermanent/HRCocoaTools",
   "license": {
     "type": "MIT",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/iPermanent/HRCocoaTools.git",
-    "tag": "0.2.0"
+    "tag": "0.2.5"
   },
   "platforms": {
     "ios": "8.0"

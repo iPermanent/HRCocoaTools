@@ -1,14 +1,14 @@
 PODS:
-  - HRCocoaTools (0.2.0):
-    - HRCocoaTools/Animation (= 0.2.0)
-    - HRCocoaTools/Category (= 0.2.0)
-    - HRCocoaTools/Media (= 0.2.0)
-    - HRCocoaTools/Util (= 0.2.0)
-  - HRCocoaTools/Animation (0.2.0):
+  - HRCocoaTools (0.2.5):
+    - HRCocoaTools/Animation (= 0.2.5)
+    - HRCocoaTools/Category (= 0.2.5)
+    - HRCocoaTools/Media (= 0.2.5)
+    - HRCocoaTools/Util (= 0.2.5)
+  - HRCocoaTools/Animation (0.2.5):
     - pop
-  - HRCocoaTools/Category (0.2.0)
-  - HRCocoaTools/Media (0.2.0)
-  - HRCocoaTools/Util (0.2.0):
+  - HRCocoaTools/Category (0.2.5)
+  - HRCocoaTools/Media (0.2.5)
+  - HRCocoaTools/Util (0.2.5):
     - Reachability
   - pop (1.0.10)
   - Reachability (3.2)
@@ -16,20 +16,15 @@ PODS:
 DEPENDENCIES:
   - HRCocoaTools (from `../`)
 
-SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - pop
-    - Reachability
-
 EXTERNAL SOURCES:
   HRCocoaTools:
-    :path: "../"
+    :path: ../
 
 SPEC CHECKSUMS:
-  HRCocoaTools: df463a4bae00299b1da53ee6a679de8c52764370
+  HRCocoaTools: 1f07c315be8be9a5038ca996e50d876d3d70ec34
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
 
 PODFILE CHECKSUM: 88641b01ad1d6295d60113f0064c5b19ece1617d
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.4.0

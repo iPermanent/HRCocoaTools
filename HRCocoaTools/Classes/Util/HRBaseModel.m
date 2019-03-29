@@ -18,6 +18,9 @@
 //生成jsonDic时排除自带的属性列表
 @property (nonatomic, strong)NSArray *excludeProperties;
 
+//反转自定义的映射表，生成jsonDic时使用
+@property (nonatomic, strong)NSDictionary *reversePropertiesDic;
+
 @end
 
 @implementation HRBaseModel
@@ -181,6 +184,10 @@
         }
         
         id obj = [self valueForKey:propertyName];
+        //设置的时候需要找json中的字段设置，以和解析统一
+        if([self.reversePropertiesDic valueForKey:propertyName]){
+            propertyName = [self.reversePropertiesDic objectForKey:propertyName];
+        }
         if([obj isKindOfClass:[NSDictionary class]] || [obj isKindOfClass:[NSString class]] || [obj isKindOfClass:[NSNumber class]]){
             [mutDic setValue:obj forKey:propertyName];
         }else if([obj isKindOfClass:[NSArray class]]){
@@ -203,6 +210,18 @@
         _excludeProperties = @[@"superclass",@"hash",@"debugDescription",@"description"];
     }
     return _excludeProperties;
+}
+
+- (NSDictionary *)reversePropertiesDic {
+    if(!_reversePropertiesDic){
+        NSMutableDictionary *dic = [NSMutableDictionary new];
+        for(NSString *jsonKey in self.mapsDictionary){
+            NSString *propertyName = [self.mapsDictionary objectForKey:jsonKey];
+            [dic setObject:propertyName forKey:jsonKey];
+        }
+        _reversePropertiesDic = dic.copy;
+    }
+    return _reversePropertiesDic;
 }
 
 @end
