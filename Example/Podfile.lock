@@ -1,14 +1,14 @@
 PODS:
-  - HRCocoaTools (0.2.6):
-    - HRCocoaTools/Animation (= 0.2.6)
-    - HRCocoaTools/Category (= 0.2.6)
-    - HRCocoaTools/Media (= 0.2.6)
-    - HRCocoaTools/Util (= 0.2.6)
-  - HRCocoaTools/Animation (0.2.6):
+  - HRCocoaTools (0.2.7):
+    - HRCocoaTools/Animation (= 0.2.7)
+    - HRCocoaTools/Category (= 0.2.7)
+    - HRCocoaTools/Media (= 0.2.7)
+    - HRCocoaTools/Util (= 0.2.7)
+  - HRCocoaTools/Animation (0.2.7):
     - pop
-  - HRCocoaTools/Category (0.2.6)
-  - HRCocoaTools/Media (0.2.6)
-  - HRCocoaTools/Util (0.2.6):
+  - HRCocoaTools/Category (0.2.7)
+  - HRCocoaTools/Media (0.2.7)
+  - HRCocoaTools/Util (0.2.7):
     - Reachability
   - pop (1.0.12)
   - Reachability (3.2)
@@ -26,7 +26,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  HRCocoaTools: 7bff85bf2a97bf30976e1498723e6028a44e1361
+  HRCocoaTools: 8ff94b09148c7ba41c57712188fcb5bfaa0a53c5
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
 

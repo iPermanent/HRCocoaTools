@@ -68,7 +68,7 @@
 		B8220226B7C860B3EE4CDA9D /* Pods-HRCocoaTools_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HRCocoaTools_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HRCocoaTools_Tests/Pods-HRCocoaTools_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		BCCF7498BBE1A297B9164039 /* Pods_HRCocoaTools_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HRCocoaTools_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEE713C1E45FB07F00FD42C6 /* Pods-HRCocoaTools_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HRCocoaTools_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HRCocoaTools_Example/Pods-HRCocoaTools_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		FD958C7CDA68FA7AB6BDA641 /* HRCocoaTools.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = HRCocoaTools.podspec; path = ../HRCocoaTools.podspec; sourceTree = "<group>"; };
+		FD958C7CDA68FA7AB6BDA641 /* HRCocoaTools.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = HRCocoaTools.podspec; path = ../HRCocoaTools.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

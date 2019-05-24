@@ -20,11 +20,16 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    self.view.backgroundColor = [UIColor greenColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     UIImageView *testImg = [[UIImageView alloc] initWithFrame:UIScreen.mainScreen.bounds];
     [self.view addSubview:testImg];
-    testImg.image =  [UIImage replaceColorToTransparent:[UIColor blackColor] image:[UIImage imageNamed:@"test.png"]];
+//    testImg.image = [UIImage replaceColorToTransparent:[UIColor whiteColor] image:[UIImage imageNamed:@"test.png"]];
+//    testImg.image =  [self replaceImage:[UIImage imageNamed:@"test.png"]
+//                             originalColor:[UIColor whiteColor]
+//                                   toColor:[UIColor redColor]];
+    
+    testImg.image = [[UIImage imageNamed:@"test.png"] imageByReplacingColor:[UIColor whiteColor] withColor:[UIColor redColor]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -32,5 +37,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end

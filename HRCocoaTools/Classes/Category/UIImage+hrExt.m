@@ -157,4 +157,73 @@
     return resultUIImage;
 }
 
+-(UIImage*) imageByReplacingColor:(UIColor*)sourceColor withColor:(UIColor*)destinationColor {
+    
+    //分段原颜色
+    const CGFloat* sourceComponents = CGColorGetComponents(sourceColor.CGColor);
+    UInt8* source255Components = malloc(sizeof(UInt8)*4);
+    for (int i = 0; i < 4; i++) source255Components[i] = (UInt8)round(sourceComponents[i]*255.0);
+    
+    //分段目标颜色
+    const CGFloat* destinationComponents = CGColorGetComponents(destinationColor.CGColor);
+    UInt8* destination255Components = malloc(sizeof(UInt8)*4);
+    for (int i = 0; i < 4; i++) destination255Components[i] = (UInt8)round(destinationComponents[i]*255.0);
+    
+    CGImageRef rawImage = self.CGImage;
+    
+    size_t width = CGImageGetWidth(rawImage);
+    size_t height = CGImageGetHeight(rawImage);
+    CGRect rect = {CGPointZero, {width, height}};
+    
+    // bitmap format
+    size_t bitsPerComponent = 8;
+    size_t bytesPerRow = width*4;
+    CGBitmapInfo bitmapInfo = kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big;
+    
+    // data pointer
+    UInt8* data = calloc(bytesPerRow, height);
+    
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    
+    // create bitmap context
+    CGContextRef ctx = CGBitmapContextCreate(data, width, height, bitsPerComponent, bytesPerRow, colorSpace, bitmapInfo);
+    CGContextDrawImage(ctx, rect, rawImage);
+    
+    //循环遍历每个像素
+    for (int byte = 0; byte < bytesPerRow*height; byte += 4) {
+        
+        UInt8 r = data[byte];
+        UInt8 g = data[byte+1];
+        UInt8 b = data[byte+2];
+        
+        // delta components
+        UInt8 dr = abs(r-source255Components[0]);
+        UInt8 dg = abs(g-source255Components[1]);
+        UInt8 db = abs(b-source255Components[2]);
+        
+        // ratio of 'how far away' each component is from the source color
+        CGFloat ratio = (dr+dg+db)/(255.0*3.0);
+        
+        // blend color components
+        data[byte] = (UInt8)round(ratio*r)+(UInt8)round((1.0-ratio)*destination255Components[0]);
+        data[byte+1] = (UInt8)round(ratio*g)+(UInt8)round((1.0-ratio)*destination255Components[1]);
+        data[byte+2] = (UInt8)round(ratio*b)+(UInt8)round((1.0-ratio)*destination255Components[2]);
+        
+    }
+    
+    CGImageRef img = CGBitmapContextCreateImage(ctx);
+    
+    //清理
+    CGContextRelease(ctx);
+    CGColorSpaceRelease(colorSpace);
+    free(data);
+    free(source255Components);
+    free(destination255Components);
+    
+    UIImage* returnImage = [UIImage imageWithCGImage:img];
+    CGImageRelease(img);
+    
+    return returnImage;
+}
+
 @end

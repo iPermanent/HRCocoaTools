@@ -69,4 +69,16 @@
  */
 + (UIImage *)replaceColorToTransparent:(UIColor *)color image:(UIImage *)image;
 
+
+
+
+/**
+ 将一张图中指定的颜色替换为另一种颜色
+ 
+ @param sourceColor 需要被替换的颜色
+ @param destinationColor 目标颜色
+ @return 处理完成的图
+ */
+- (UIImage*)imageByReplacingColor:(UIColor*)sourceColor withColor:(UIColor*)destinationColor;
+
 @end
