@@ -16,15 +16,20 @@ PODS:
 DEPENDENCIES:
   - HRCocoaTools (from `../`)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - pop
+    - Reachability
+
 EXTERNAL SOURCES:
   HRCocoaTools:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  HRCocoaTools: 25aaa4e5a91e77dbc2d3a351bf5763c29d599a17
+  HRCocoaTools: 7bff85bf2a97bf30976e1498723e6028a44e1361
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
 
 PODFILE CHECKSUM: e782ab73e06aebe64f3abd6f3d3d9b7dec2568cf
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.6.1

@@ -87,4 +87,74 @@
     return newImage;
 }
 
+//获取一个颜色的RGB值  以255为单位返回
++ (void)getRGBComponents:(int [3])components forColor:(UIColor *)color {
+    CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
+    unsigned char resultingPixel[4];
+    CGContextRef context = CGBitmapContextCreate(&resultingPixel,
+                                                 1,
+                                                 1,
+                                                 8,
+                                                 4,
+                                                 rgbColorSpace,
+                                                 kCGImageAlphaNoneSkipLast);
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, CGRectMake(0, 0, 1, 1));
+    CGContextRelease(context);
+    CGColorSpaceRelease(rgbColorSpace);
+    
+    for (int component = 0; component < 3; component++) {
+        components[component] = resultingPixel[component];
+    }
+}
+
++ (UIImage *)replaceColorToTransparent:(UIColor *)color image:(UIImage *)image{
+    // 分配内存
+    const int imageWidth = image.size.width;
+    const int imageHeight = image.size.height;
+    size_t bytesPerRow = imageWidth * 4;
+    uint32_t* rgbImageBuf = (uint32_t*)malloc(bytesPerRow * imageHeight);
+    
+    // 创建context
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef context = CGBitmapContextCreate(rgbImageBuf, imageWidth, imageHeight, 8, bytesPerRow, colorSpace,
+                                                 kCGBitmapByteOrder32Little | kCGImageAlphaNoneSkipLast);
+    CGContextDrawImage(context, CGRectMake(0, 0, imageWidth, imageHeight), image.CGImage);
+    
+    // 遍历像素
+    int pixelNum = imageWidth * imageHeight;
+    uint32_t* pCurPtr = rgbImageBuf;
+    
+    int R, G, B;
+    int components[3];
+    [self getRGBComponents:components forColor:color];
+    R = components[0];
+    G = components[1];
+    B = components[2];
+    
+    for (int i = 0; i < pixelNum; i++, pCurPtr++){
+        //将像素点转成子节数组来表示---第一个表示透明度即ARGB这种表示方式。ptr[0]:透明度,ptr[1]:R,ptr[2]:G,ptr[3]:B
+        //分别取出RGB值后。进行判断需不需要设成透明。
+        uint8_t* ptr = (uint8_t*)pCurPtr;
+        // NSLog(@"1是%d,2是%d,3是%d",ptr[1],ptr[2],ptr[3]);
+        if(ptr[1] == R && ptr[2] == G && ptr[3] == B){
+            ptr[0] = 0;
+        }
+    }
+    
+    // 将内存转成image
+    CGDataProviderRef dataProvider =CGDataProviderCreateWithData(NULL, rgbImageBuf, bytesPerRow * imageHeight, nil);
+    CGImageRef imageRef = CGImageCreate(imageWidth, imageHeight,8, 32, bytesPerRow, colorSpace,
+                                        kCGImageAlphaLast |kCGBitmapByteOrder32Little, dataProvider,
+                                        NULL, true,kCGRenderingIntentDefault);
+    CGDataProviderRelease(dataProvider);
+    UIImage* resultUIImage = [UIImage imageWithCGImage:imageRef];
+    // 释放
+    CGImageRelease(imageRef);
+    CGContextRelease(context);
+    CGColorSpaceRelease(colorSpace);
+    
+    return resultUIImage;
+}
+
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "HRViewController.h"
+#import <HRCocoaTools/UIImage+hrExt.h>
 
 @interface HRViewController ()
 
@@ -18,6 +19,12 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    self.view.backgroundColor = [UIColor greenColor];
+    
+    UIImageView *testImg = [[UIImageView alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    [self.view addSubview:testImg];
+    testImg.image =  [UIImage replaceColorToTransparent:[UIColor blackColor] image:[UIImage imageNamed:@"test.png"]];
 }
 
 - (void)didReceiveMemoryWarning

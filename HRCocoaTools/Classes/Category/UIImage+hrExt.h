@@ -52,4 +52,21 @@
  */
 +(CGSize)imageSizeFromUrl:(NSString *)url;
 
+/**
+ 获取一个颜色的RGB值  以255为单位返回
+
+ @param components 传入CGFloat components[3] 这样的数组，用数组接收值
+ @param color 需要分析的color
+ */
++ (void)getRGBComponents:(int [3])components forColor:(UIColor *)color;
+
+/**
+ 将某张图中指定的颜色替换为透明背景
+
+ @param color 需要替换的颜色
+ @param image 需要处理的图片
+ @return 处理后的透明图片
+ */
++ (UIImage *)replaceColorToTransparent:(UIColor *)color image:(UIImage *)image;
+
 @end
