@@ -159,15 +159,50 @@
 
 -(UIImage*) imageByReplacingColor:(UIColor*)sourceColor withColor:(UIColor*)destinationColor {
     
-    //分段原颜色
-    const CGFloat* sourceComponents = CGColorGetComponents(sourceColor.CGColor);
-    UInt8* source255Components = malloc(sizeof(UInt8)*4);
-    for (int i = 0; i < 4; i++) source255Components[i] = (UInt8)round(sourceComponents[i]*255.0);
-    
     //分段目标颜色
-    const CGFloat* destinationComponents = CGColorGetComponents(destinationColor.CGColor);
-    UInt8* destination255Components = malloc(sizeof(UInt8)*4);
-    for (int i = 0; i < 4; i++) destination255Components[i] = (UInt8)round(destinationComponents[i]*255.0);
+    UInt8* source255Components = nil;
+    if (CGColorGetNumberOfComponents(sourceColor.CGColor) == 2 || CGColorGetNumberOfComponents(sourceColor.CGColor) == 4) {
+        source255Components = malloc(sizeof(UInt8)*4);
+        if (CGColorGetNumberOfComponents(sourceColor.CGColor) == 2) {
+            const CGFloat *colorComponents = CGColorGetComponents(sourceColor.CGColor);
+            source255Components[0] = (UInt8)round(colorComponents[0] * 255.0);
+            source255Components[1] = (UInt8)round(colorComponents[0] * 255.0);
+            source255Components[2] = (UInt8)round(colorComponents[0] * 255.0);
+            source255Components[3] = (UInt8)round(colorComponents[1] * 255.0);
+        }
+        else if (CGColorGetNumberOfComponents(sourceColor.CGColor) == 4) {
+            const CGFloat * colorComponents = CGColorGetComponents(sourceColor.CGColor);
+            source255Components[0] = (UInt8)round(colorComponents[0] * 255.0);
+            source255Components[1] = (UInt8)round(colorComponents[1] * 255.0);
+            source255Components[2] = (UInt8)round(colorComponents[2] * 255.0);
+            source255Components[3] = (UInt8)round(colorComponents[3] * 255.0);
+        }
+    } else {
+        NSLog(@"imageColor ERROR !!!!!");
+        return nil;
+    }
+    
+    UInt8* destination255Components = nil;
+    if (CGColorGetNumberOfComponents(destinationColor.CGColor) == 2 || CGColorGetNumberOfComponents(destinationColor.CGColor) == 4) {
+        destination255Components = malloc(sizeof(UInt8)*4);
+        if (CGColorGetNumberOfComponents(destinationColor.CGColor) == 2) {
+            const CGFloat *colorComponents = CGColorGetComponents(destinationColor.CGColor);
+            destination255Components[0] = (UInt8)round(colorComponents[0] * 255.0);
+            destination255Components[1] = (UInt8)round(colorComponents[0] * 255.0);
+            destination255Components[2] = (UInt8)round(colorComponents[0] * 255.0);
+            destination255Components[3] = (UInt8)round(colorComponents[1] * 255.0);
+        }
+        else if (CGColorGetNumberOfComponents(destinationColor.CGColor) == 4) {
+            const CGFloat * colorComponents = CGColorGetComponents(destinationColor.CGColor);
+            destination255Components[0] = (UInt8)round(colorComponents[0] * 255.0);
+            destination255Components[1] = (UInt8)round(colorComponents[1] * 255.0);
+            destination255Components[2] = (UInt8)round(colorComponents[2] * 255.0);
+            destination255Components[3] = (UInt8)round(colorComponents[3] * 255.0);
+        }
+    } else {
+        NSLog(@"imageColor ERROR !!!!!");
+        return nil;
+    }
     
     CGImageRef rawImage = self.CGImage;
     
