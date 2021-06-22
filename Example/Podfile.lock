@@ -17,7 +17,7 @@ DEPENDENCIES:
   - HRCocoaTools (from `../`)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - pop
     - Reachability
 
@@ -32,4 +32,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: e782ab73e06aebe64f3abd6f3d3d9b7dec2568cf
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.7.5
