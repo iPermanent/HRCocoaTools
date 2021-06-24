@@ -18,6 +18,15 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray <NSString *>*)loadedClassNames:(Class _Nullable)superClass
                         conformsToProtocol:(Protocol* _Nullable)protocol;
 
+
+/// 获取项目中自己生成的类，排除系统类
+/// @param protocol 需要实现的协议
++ (NSArray <NSString *> *)getCustomClassesConformsToProtocol:(Protocol * _Nullable)protocol;
+
+
+/// 获取所有实现了load方法的类
++ (NSArray <NSString *>*)getLoadedClassesNameHasLoadMethod;
+
 @end
 
 NS_ASSUME_NONNULL_END
